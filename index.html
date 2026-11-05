@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Informação climática clara para ajudar você a se preparar. Consulte o tempo e acompanhe fontes oficiais de alertas.">
+  <meta name="theme-color" content="#071b2d">
+  <title>Clima Alerta Brasil | Informação para se preparar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topline"><div class="container topline-inner"><span>INFORMAÇÃO CLIMÁTICA PARA TODO O BRASIL</span><span id="today"></span></div></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#" aria-label="Clima Alerta Brasil - início">
+        <span class="brand-mark">☀</span><span>CLIMA <b>ALERTA</b><small>BRASIL</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <nav id="mainNav">
+        <a href="#tempo">Previsão</a><a href="#alertas">Alertas oficiais</a><a href="#entenda">Entenda o clima</a><a href="#prevencao">Prevenção</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i></i> CLIMA, INFORMAÇÃO E PREVENÇÃO</span>
+          <h1>O clima muda.<br><em>Esteja preparado.</em></h1>
+          <p>Informação climática em linguagem simples para você entender o que está acontecendo e saber onde buscar orientações confiáveis.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#tempo">Consultar previsão <span>→</span></a><a class="text-link" href="#alertas">Ver alertas oficiais</a></div>
+          <div class="trust-note"><span>✓</span> Conteúdo informativo com links para fontes oficiais</div>
+        </div>
+        <div class="hero-art" aria-label="Ilustração de nuvens, sol e chuva">
+          <div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+          <div class="rain rain-one"></div><div class="rain rain-two"></div><div class="rain rain-three"></div>
+          <div class="art-caption"><b>PREPARAÇÃO COMEÇA COM INFORMAÇÃO</b><span>Consulte fontes confiáveis e acompanhe as atualizações.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section weather-section" id="tempo">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">CONDIÇÕES DO TEMPO</span><h2>Como está o tempo na sua cidade?</h2><p>Pesquise uma cidade para consultar as condições atuais e a previsão dos próximos dias.</p></div>
+          <span class="live-label"><i></i> DADOS METEOROLÓGICOS</span>
+        </div>
+        <form id="weatherForm" class="search-box">
+          <label class="sr-only" for="cityInput">Digite sua cidade</label>
+          <span class="search-icon">⌕</span><input id="cityInput" type="search" placeholder="Digite uma cidade (ex.: Campinas)" autocomplete="off" required>
+          <button class="btn btn-primary" type="submit">Consultar</button>
+        </form>
+        <div id="weatherStatus" class="status-message" role="status">Digite o nome de uma cidade para consultar a previsão.</div>
+        <div id="weatherResult" class="weather-result" hidden>
+          <div class="current-weather">
+            <div><span class="muted-label" id="weatherPlace">SUA CIDADE</span><div class="temperature"><span id="weatherIcon">☀</span><strong id="temperature">--°</strong></div><b id="weatherDescription">Condição do tempo</b><p id="weatherDetails"></p></div>
+            <div class="weather-extra"><div><span>UMIDADE</span><b id="humidity">--%</b></div><div><span>VENTO</span><b id="wind">-- km/h</b></div><div><span>MÁXIMA / MÍNIMA</span><b id="maxmin">--° / --°</b></div></div>
+          </div>
+          <div class="forecast-heading">PRÓXIMOS DIAS</div><div id="forecast" class="forecast-grid"></div>
+          <p class="source-note">Dados de previsão fornecidos por Open-Meteo. Previsões podem mudar; consulte também os avisos oficiais da sua região.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alerts-section" id="alertas">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">SEGURANÇA EM PRIMEIRO LUGAR</span><h2>Alertas e informações oficiais</h2><p>Consulte diretamente os órgãos responsáveis por emitir avisos e orientações.</p></div></div>
+        <div class="alert-cards">
+          <a class="alert-card" href="https://www.gov.br/defesacivil/pt-br" target="_blank" rel="noopener"><span class="card-icon orange">⚠</span><span class="card-kicker">PROTEÇÃO E DEFESA CIVIL</span><b>Defesa Civil Nacional</b><p>Orientações de prevenção e informações sobre situações de risco.</p><span class="card-link">Acessar fonte oficial ↗</span></a>
+          <a class="alert-card" href="https://portal.inmet.gov.br/alertas" target="_blank" rel="noopener"><span class="card-icon blue">☁</span><span class="card-kicker">AVISOS METEOROLÓGICOS</span><b>Alertas do INMET</b><p>Avisos de chuva intensa, tempestades, ventos e baixa umidade.</p><span class="card-link">Consultar alertas ↗</span></a>
+          <a class="alert-card" href="https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/defesa-civil" target="_blank" rel="noopener"><span class="card-icon green">⌖</span><span class="card-kicker">ORIENTAÇÃO AO CIDADÃO</span><b>Orientações de segurança</b><p>Saiba como agir antes, durante e depois de eventos extremos.</p><span class="card-link">Ver orientações ↗</span></a>
+        </div>
+        <div class="important-note"><b>Importante:</b> este portal é informativo e não substitui os alertas oficiais. Em emergência, siga as instruções da Defesa Civil e dos serviços de emergência da sua localidade.</div>
+      </div>
+    </section>
+
+    <section class="section learn-section" id="entenda">
+      <div class="container learn-grid">
+        <div><span class="eyebrow">ENTENDA OS FENÔMENOS</span><h2>O que acontece com o clima?</h2><p>Explicações diretas para entender fenômenos naturais, seus possíveis efeitos e por que acompanhar as atualizações é importante.</p><a class="btn btn-dark" href="https://www.cptec.inpe.br/" target="_blank" rel="noopener">Acompanhar o CPTEC/INPE ↗</a></div>
+        <div class="topic-list">
+          <a href="https://www.gov.br/inpe/pt-br" target="_blank" rel="noopener"><span class="topic-symbol">🌊</span><span><b>El Niño e La Niña</b><small>Entenda como o aquecimento e o resfriamento do Pacífico podem influenciar padrões de chuva e temperatura.</small></span><span>↗</span></a>
+          <a href="https://portal.inmet.gov.br/" target="_blank" rel="noopener"><span class="topic-symbol">🌡️</span><span><b>Ondas de calor</b><small>Saiba reconhecer períodos de calor intenso e como reduzir riscos.</small></span><span>↗</span></a>
+          <a href="https://www.gov.br/defesacivil/pt-br" target="_blank" rel="noopener"><span class="topic-symbol">🌧️</span><span><b>Chuvas intensas</b><small>Conheça cuidados para temporais, alagamentos e enxurradas.</small></span><span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section prevention-section" id="prevencao">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">INFORMAÇÃO QUE PROTEGE</span><h2>Pequenas atitudes fazem diferença</h2><p>Alguns cuidados simples ajudam a reduzir riscos em períodos de tempo severo.</p></div></div>
+        <div class="tips-grid">
+          <article class="tip"><span>🏠</span><b>Cuide da sua casa</b><p>Mantenha calhas limpas e não deixe lixo obstruir bueiros e ralos.</p></article>
+          <article class="tip"><span>📱</span><b>Acompanhe os avisos</b><p>Consulte a Defesa Civil e os órgãos oficiais da sua região.</p></article>
+          <article class="tip"><span>⚡</span><b>Durante tempestades</b><p>Evite áreas alagadas e não se abrigue debaixo de árvores.</p></article>
+          <article class="tip"><span>💧</span><b>Em períodos de calor</b><p>Beba água, procure sombra e evite esforço físico nos horários mais quentes.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container footer-inner"><a class="brand footer-brand" href="#"><span class="brand-mark">☀</span><span>CLIMA <b>ALERTA</b><small>BRASIL</small></span></a><p>Informação para se preparar. Fontes oficiais para decidir.</p><div class="footer-links"><a href="https://portal.inmet.gov.br/">INMET</a><a href="https://www.gov.br/defesacivil/pt-br">Defesa Civil</a><a href="https://www.cptec.inpe.br/">CPTEC/INPE</a></div><small class="copyright">© <span id="year"></span> Clima Alerta Brasil. Projeto independente de caráter informativo.</small></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
