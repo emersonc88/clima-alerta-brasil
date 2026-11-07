@@ -199,3 +199,92 @@ if (seletorExtras) {
   seletorExtras.addEventListener("change", traduzirExtras);
   traduzirExtras();
 }
+
+/* TRADUCAO DOS ALERTAS - CLIMA ALERTA GLOBAL */
+
+const traducoesAlertas = {
+  pt: {
+    etiqueta: "SEGURANÇA EM PRIMEIRO LUGAR",
+    titulo: "Alertas e informações oficiais",
+    descricao: "Consulte diretamente os órgãos responsáveis por emitir avisos e orientações.",
+    cartoes: [
+      ["PROTEÇÃO E DEFESA CIVIL", "Defesa Civil Nacional",
+       "Orientações de prevenção e informações sobre situações de risco.",
+       "Acessar fonte oficial"],
+      ["AVISOS METEOROLÓGICOS", "Alertas do INMET",
+       "Avisos de chuva intensa, tempestades, ventos e baixa umidade.",
+       "Consultar alertas"],
+      ["ORIENTAÇÃO AO CIDADÃO", "Orientações de segurança",
+       "Saiba como agir antes, durante e depois de eventos extremos.",
+       "Ver orientações"]
+    ],
+    destaque: "Importante:",
+    aviso: "Este portal é informativo e não substitui os alertas oficiais. Em emergência, siga as instruções das autoridades locais."
+  },
+  en: {
+    etiqueta: "SAFETY FIRST",
+    titulo: "Official weather alerts and information",
+    descricao: "Access official Brazilian weather and civil defense sources.",
+    cartoes: [
+      ["CIVIL DEFENSE - BRAZIL", "Brazilian Civil Defense",
+       "Prevention guidance and information about hazardous situations.",
+       "Visit official source"],
+      ["WEATHER WARNINGS - BRAZIL", "INMET Weather Alerts",
+       "Warnings for heavy rain, storms, strong winds and low humidity.",
+       "View weather alerts"],
+      ["SAFETY GUIDANCE - BRAZIL", "Safety Guidelines",
+       "Learn how to prepare for and respond to extreme events.",
+       "Read safety guidelines"]
+    ],
+    destaque: "Important:",
+    aviso: "This website is informational and does not replace official warnings. In an emergency, follow your local authorities."
+  },
+  es: {
+    etiqueta: "LA SEGURIDAD ES LO PRIMERO",
+    titulo: "Alertas e información meteorológica oficial",
+    descricao: "Consulta fuentes meteorológicas y de protección civil de Brasil.",
+    cartoes: [
+      ["PROTECCIÓN CIVIL - BRASIL", "Defensa Civil de Brasil",
+       "Consejos de prevención e información sobre situaciones de riesgo.",
+       "Visitar fuente oficial"],
+      ["AVISOS METEOROLÓGICOS - BRASIL", "Alertas del INMET",
+       "Avisos de lluvias intensas, tormentas, vientos y baja humedad.",
+       "Consultar alertas"],
+      ["ORIENTACIÓN DE SEGURIDAD - BRASIL", "Consejos de seguridad",
+       "Aprende cómo actuar antes, durante y después de eventos extremos.",
+       "Ver recomendaciones"]
+    ],
+    destaque: "Importante:",
+    aviso: "Este sitio es informativo y no sustituye las alertas oficiales. En caso de emergencia, sigue las indicaciones de las autoridades locales."
+  }
+};
+
+function traduzirAlertas() {
+  const seletor = document.getElementById("languageSelect");
+  const secao = document.getElementById("alertas");
+  if (!seletor || !secao) return;
+
+  const t = traducoesAlertas[seletor.value] || traducoesAlertas.pt;
+
+  secao.querySelector(".section-heading .eyebrow").textContent = t.etiqueta;
+  secao.querySelector(".section-heading h2").textContent = t.titulo;
+  secao.querySelector(".section-heading p").textContent = t.descricao;
+
+  secao.querySelectorAll(".alert-card").forEach((cartao, i) => {
+    const dados = t.cartoes[i];
+    if (!dados) return;
+    cartao.querySelector(".card-kicker").textContent = dados[0];
+    cartao.querySelector("b").textContent = dados[1];
+    cartao.querySelector("p").textContent = dados[2];
+    cartao.querySelector(".card-link").textContent = dados[3] + " ↗";
+  });
+
+  const aviso = secao.querySelector(".important-note");
+  aviso.querySelector("b").textContent = t.destaque;
+  aviso.lastChild.textContent = " " + t.aviso;
+}
+
+document.getElementById("languageSelect")
+  ?.addEventListener("change", traduzirAlertas);
+
+traduzirAlertas();
