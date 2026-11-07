@@ -129,3 +129,73 @@ if (seletorIdioma) {
   seletorIdioma.addEventListener("change", trocarIdioma);
   trocarIdioma();
 }
+
+/* TRADUCAO COMPLEMENTAR - CLIMA ALERTA GLOBAL */
+
+const textosExtras = {
+  pt: {
+    topo: "INFORMAÇÃO CLIMÁTICA PARA O MUNDO TODO",
+    idioma: "🌐 Idioma:",
+    destaque: "CLIMA, INFORMAÇÃO E PREVENÇÃO",
+    consultar: "Consultar previsão ",
+    alertas: "Ver alertas oficiais",
+    confianca: " Conteúdo informativo com links para fontes oficiais",
+    arte: "PREPARAÇÃO COMEÇA COM INFORMAÇÃO",
+    arteTexto: "Consulte fontes confiáveis e acompanhe as atualizações.",
+    condicoes: "CONDIÇÕES DO TEMPO",
+    dados: " DADOS METEOROLÓGICOS"
+  },
+  en: {
+    topo: "WEATHER INFORMATION FOR THE WHOLE WORLD",
+    idioma: "🌐 Language:",
+    destaque: "WEATHER, INFORMATION AND SAFETY",
+    consultar: "Check forecast ",
+    alertas: "View official alerts",
+    confianca: " Informational content with links to official sources",
+    arte: "PREPAREDNESS STARTS WITH INFORMATION",
+    arteTexto: "Check trusted sources and stay informed.",
+    condicoes: "WEATHER CONDITIONS",
+    dados: " WEATHER DATA"
+  },
+  es: {
+    topo: "INFORMACIÓN METEOROLÓGICA PARA TODO EL MUNDO",
+    idioma: "🌐 Idioma:",
+    destaque: "CLIMA, INFORMACIÓN Y PREVENCIÓN",
+    consultar: "Consultar pronóstico ",
+    alertas: "Ver alertas oficiales",
+    confianca: " Contenido informativo con enlaces a fuentes oficiales",
+    arte: "LA PREPARACIÓN COMIENZA CON INFORMACIÓN",
+    arteTexto: "Consulta fuentes confiables y mantente informado.",
+    condicoes: "CONDICIONES METEOROLÓGICAS",
+    dados: " DATOS METEOROLÓGICOS"
+  }
+};
+
+function traduzirExtras() {
+  const idioma = document.getElementById("languageSelect").value;
+  const t = textosExtras[idioma];
+
+  document.querySelector(".topline-inner span").textContent = t.topo;
+  document.querySelector(".language-switcher label").textContent = t.idioma;
+  document.querySelector(".hero-copy .eyebrow").lastChild.textContent = " " + t.destaque;
+  document.querySelector(".hero-actions .btn-primary").firstChild.textContent = t.consultar;
+  document.querySelector(".hero-actions .text-link").textContent = t.alertas;
+  document.querySelector(".trust-note").lastChild.textContent = t.confianca;
+  document.querySelector(".art-caption b").textContent = t.arte;
+  document.querySelector(".art-caption span").textContent = t.arteTexto;
+  document.querySelector(".weather-section .eyebrow").textContent = t.condicoes;
+  document.querySelector(".live-label").lastChild.textContent = t.dados;
+
+  const locais = { pt: "pt-BR", en: "en-US", es: "es-ES" };
+  document.getElementById("today").textContent =
+    new Date().toLocaleDateString(locais[idioma], {
+      weekday: "long", day: "2-digit",
+      month: "long", year: "numeric"
+    });
+}
+
+const seletorExtras = document.getElementById("languageSelect");
+if (seletorExtras) {
+  seletorExtras.addEventListener("change", traduzirExtras);
+  traduzirExtras();
+}
