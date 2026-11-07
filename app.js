@@ -73,3 +73,59 @@ function renderWeather(place,data){
     el.title=desc;$("forecast").appendChild(el);
   });
 }
+/* CLIMA ALERTA GLOBAL - IDIOMAS */
+
+const textosIdiomas = {
+  pt: {
+    menu: ["Previsão", "Alertas oficiais", "Entenda o clima", "Prevenção"],
+    titulo: "O clima muda.<br><em>Esteja preparado.</em>",
+    descricao: "Informação climática em linguagem simples para você entender o que está acontecendo e saber onde buscar orientações confiáveis.",
+    previsao: "Como está o tempo na sua cidade?",
+    instrucao: "Pesquise uma cidade para consultar as condições atuais e a previsão dos próximos dias.",
+    campo: "Digite uma cidade (ex.: Campinas)",
+    botao: "Consultar"
+  },
+  en: {
+    menu: ["Forecast", "Official alerts", "Learn about climate", "Safety"],
+    titulo: "Weather changes.<br><em>Be prepared.</em>",
+    descricao: "Clear weather information to help you understand conditions and find reliable official guidance.",
+    previsao: "What's the weather like in your city?",
+    instrucao: "Search for a city to see current conditions and the forecast.",
+    campo: "Enter a city (e.g., London)",
+    botao: "Search"
+  },
+  es: {
+    menu: ["Pronóstico", "Alertas oficiales", "Entiende el clima", "Prevención"],
+    titulo: "El clima cambia.<br><em>Prepárate.</em>",
+    descricao: "Información meteorológica clara para entender las condiciones y encontrar orientación oficial confiable.",
+    previsao: "¿Cómo está el tiempo en tu ciudad?",
+    instrucao: "Busca una ciudad para consultar las condiciones actuales y el pronóstico.",
+    campo: "Escribe una ciudad (ej.: Madrid)",
+    botao: "Consultar"
+  }
+};
+
+const seletorIdioma = document.getElementById("languageSelect");
+
+function trocarIdioma() {
+  const idioma = seletorIdioma.value;
+  const t = textosIdiomas[idioma];
+
+  document.documentElement.lang = idioma;
+
+  document.querySelectorAll("#mainNav a").forEach((link, i) => {
+    link.textContent = t.menu[i];
+  });
+
+  document.querySelector(".hero h1").innerHTML = t.titulo;
+  document.querySelector(".hero-copy > p").textContent = t.descricao;
+  document.querySelector(".weather-section h2").textContent = t.previsao;
+  document.querySelector(".weather-section .section-heading p").textContent = t.instrucao;
+  document.getElementById("cityInput").placeholder = t.campo;
+  document.querySelector("#weatherForm button").textContent = t.botao;
+}
+
+if (seletorIdioma) {
+  seletorIdioma.addEventListener("change", trocarIdioma);
+  trocarIdioma();
+}
