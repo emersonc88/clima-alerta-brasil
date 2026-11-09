@@ -354,3 +354,69 @@ if (seletorClima) {
   seletorClima.addEventListener("change", traduzirClima);
   traduzirClima();
 }
+
+/* TRADUCAO - PREVENCAO */
+
+const textosPrevencao = {
+  pt: {
+    etiqueta: "INFORMAÇÃO QUE PROTEGE",
+    titulo: "Pequenas atitudes fazem diferença",
+    descricao: "Alguns cuidados simples ajudam a reduzir riscos em períodos de tempo severo.",
+    dicas: [
+      ["Cuide da sua casa", "Mantenha calhas limpas e não deixe lixo obstruir bueiros e ralos."],
+      ["Acompanhe os avisos", "Consulte os alertas oficiais da sua região."],
+      ["Durante tempestades", "Evite áreas alagadas e não se abrigue debaixo de árvores."],
+      ["Em períodos de calor", "Beba água, procure sombra e evite esforço físico nos horários mais quentes."]
+    ]
+  },
+  en: {
+    etiqueta: "INFORMATION THAT PROTECTS",
+    titulo: "Small actions make a difference",
+    descricao: "Simple precautions can help reduce risks during severe weather.",
+    dicas: [
+      ["Protect your home", "Keep gutters clean and drains free of debris."],
+      ["Follow official alerts", "Check official weather warnings for your area."],
+      ["During storms", "Avoid flooded areas and never shelter under trees."],
+      ["During hot weather", "Drink water, seek shade and avoid strenuous activity during the hottest hours."]
+    ]
+  },
+  es: {
+    etiqueta: "INFORMACIÓN QUE PROTEGE",
+    titulo: "Pequeñas acciones marcan la diferencia",
+    descricao: "Algunas precauciones ayudan a reducir riesgos durante condiciones meteorológicas extremas.",
+    dicas: [
+      ["Cuida tu hogar", "Mantén las canaletas limpias y los desagües libres de basura."],
+      ["Consulta las alertas", "Revisa los avisos meteorológicos oficiales de tu región."],
+      ["Durante las tormentas", "Evita las zonas inundadas y no te refugies debajo de árboles."],
+      ["Durante el calor", "Bebe agua, busca sombra y evita el esfuerzo físico durante las horas más calurosas."]
+    ]
+  }
+};
+
+function traduzirPrevencao() {
+  const seletor = document.getElementById("languageSelect");
+  const secao = document.getElementById("prevencao");
+  if (!seletor || !secao) return;
+
+  const t = textosPrevencao[seletor.value] || textosPrevencao.pt;
+  const cabecalho = secao.querySelector(".section-heading");
+
+  if (cabecalho) {
+    cabecalho.querySelector(".eyebrow").textContent = t.etiqueta;
+    cabecalho.querySelector("h2").textContent = t.titulo;
+    cabecalho.querySelector("p").textContent = t.descricao;
+  }
+
+  secao.querySelectorAll(".tips-grid .tip").forEach((cartao, i) => {
+    if (!t.dicas[i]) return;
+    cartao.querySelector("b").textContent = t.dicas[i][0];
+    cartao.querySelector("p").textContent = t.dicas[i][1];
+  });
+}
+
+const seletorPrevencao = document.getElementById("languageSelect");
+
+if (seletorPrevencao) {
+  seletorPrevencao.addEventListener("change", traduzirPrevencao);
+  traduzirPrevencao();
+}
