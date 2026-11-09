@@ -288,3 +288,69 @@ document.getElementById("languageSelect")
   ?.addEventListener("change", traduzirAlertas);
 
 traduzirAlertas();
+
+
+/* TRADUCAO - ENTENDA O CLIMA */
+
+const textosClima = {
+  pt: {
+    etiqueta: "ENTENDA OS FENÔMENOS",
+    titulo: "O que acontece com o clima?",
+    descricao: "Explicações diretas sobre fenômenos naturais e seus possíveis efeitos.",
+    botao: "Acompanhar o CPTEC/INPE ↗",
+    temas: [
+      ["El Niño e La Niña", "Entenda como o aquecimento e o resfriamento do Pacífico podem influenciar a chuva e a temperatura."],
+      ["Ondas de calor", "Saiba reconhecer períodos de calor intenso e como reduzir riscos."],
+      ["Chuvas intensas", "Conheça cuidados para temporais, alagamentos e enxurradas."]
+    ]
+  },
+  en: {
+    etiqueta: "UNDERSTAND WEATHER PHENOMENA",
+    titulo: "What's happening with the climate?",
+    descricao: "Clear explanations of natural phenomena and their possible effects.",
+    botao: "Visit CPTEC/INPE (Brazil) ↗",
+    temas: [
+      ["El Niño and La Niña", "Learn how warming and cooling in the Pacific can influence rainfall and temperatures."],
+      ["Heat waves", "Learn how to recognize extreme heat and reduce risks."],
+      ["Heavy rainfall", "Learn safety precautions for storms and flooding."]
+    ]
+  },
+  es: {
+    etiqueta: "COMPRENDE LOS FENÓMENOS",
+    titulo: "¿Qué está pasando con el clima?",
+    descricao: "Explicaciones claras sobre los fenómenos naturales y sus posibles efectos.",
+    botao: "Visitar CPTEC/INPE (Brasil) ↗",
+    temas: [
+      ["El Niño y La Niña", "Descubre cómo el calentamiento y enfriamiento del Pacífico pueden influir en las lluvias y temperaturas."],
+      ["Olas de calor", "Aprende a reconocer el calor extremo y reducir riesgos."],
+      ["Lluvias intensas", "Conoce las precauciones ante tormentas e inundaciones."]
+    ]
+  }
+};
+
+function traduzirClima() {
+  const seletor = document.getElementById("languageSelect");
+  const secao = document.getElementById("entenda");
+  if (!seletor || !secao) return;
+
+  const t = textosClima[seletor.value] || textosClima.pt;
+  const intro = secao.querySelector(".learn-grid > div:first-child");
+  if (!intro) return;
+
+  intro.querySelector(".eyebrow").textContent = t.etiqueta;
+  intro.querySelector("h2").textContent = t.titulo;
+  intro.querySelector("p").textContent = t.descricao;
+  intro.querySelector(".btn-dark").textContent = t.botao;
+
+  secao.querySelectorAll(".topic-list a").forEach((item, i) => {
+    if (!t.temas[i]) return;
+    item.querySelector("b").textContent = t.temas[i][0];
+    item.querySelector("small").textContent = t.temas[i][1];
+  });
+}
+
+const seletorClima = document.getElementById("languageSelect");
+if (seletorClima) {
+  seletorClima.addEventListener("change", traduzirClima);
+  traduzirClima();
+}
